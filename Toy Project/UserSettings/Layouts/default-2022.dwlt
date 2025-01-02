@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 14
-    y: 50.666668
+    x: 18
+    y: 56.666668
     width: 1659.3334
     height: 954.6667
   m_ShowMode: 4
-  m_Title: "\uD504\uB85C\uC81D\uD2B8"
+  m_Title: "\uACC4\uCE35 \uAD6C\uC870"
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -395,8 +395,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1210.6667
-    y: 80.66667
+    x: 1214.6667
+    y: 86.66667
     width: 461.66672
     height: 883.6667
   m_SerializedDataModeController:
@@ -442,8 +442,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 14
-    y: 80.66667
+    x: 18
+    y: 86.66667
     width: 791
     height: 883.6667
   m_SerializedDataModeController:
@@ -916,8 +916,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 806
-    y: 80.66667
+    x: 810
+    y: 86.66667
     width: 402.66666
     height: 399
   m_SerializedDataModeController:
@@ -933,7 +933,7 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: f4590000
+      m_SelectedIDs: 
       m_LastClickedID: 0
       m_ExpandedIDs: 2cfbffff
       m_RenameOverlay:
@@ -979,8 +979,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 806
-    y: 500.6667
+    x: 810
+    y: 506.6667
     width: 402.66666
     height: 463.6667
   m_SerializedDataModeController:
@@ -1022,21 +1022,21 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 6e5a0000
     m_LastClickedID: 23150
-    m_ExpandedIDs: 000000006e5a0000ffffff7f
+    m_ExpandedIDs: 000000006e5a0000745a0000205d0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Materials
+      m_OriginalName: Materials
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 23202
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_SearchString: 
@@ -1078,7 +1078,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 0
-    m_ExpandedInstanceIDs: c62300008e710000007500007e710000aa71000056740000187400002e7400000e8d0000707400009a7500000276000000000000fa6300005c5a0000e25a0000
+    m_ExpandedInstanceIDs: c62300008e710000007500007e710000aa71000056740000187400002e7400000e8d0000707400009a7500000276000000000000fa6300005c5a0000e25a0000e85b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
