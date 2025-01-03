@@ -7,6 +7,8 @@ public class PlayerMove : MonoBehaviour
 
     private Animator animator;
 
+    private PlayerAttack playerAttack;
+
     Vector3 moveDirection;
 
     private readonly int hashMove = Animator.StringToHash("Move");
@@ -19,8 +21,15 @@ public class PlayerMove : MonoBehaviour
     private float speed;
     private float jumpPower;
 
-    private bool isJumping;
-    private bool isDodge;
+    public bool IsJumping
+    {
+        get; private set;
+    }
+
+    public bool IsDodge
+    { 
+        get; private set;
+    }
 
     private string hMoveString = "Horizontal";
     private string vMoveString = "Vertical";
@@ -32,6 +41,7 @@ public class PlayerMove : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
+        playerAttack = GetComponent<PlayerAttack>();
     }
 
     void Start()
@@ -39,8 +49,8 @@ public class PlayerMove : MonoBehaviour
         speed = originalSpeed;
         jumpPower = 8f;
 
-        isJumping = false;
-        isDodge = false;
+        IsJumping = false;
+        IsDodge = false;
     }
 
     void Update()
@@ -48,17 +58,20 @@ public class PlayerMove : MonoBehaviour
         hMove = Input.GetAxisRaw(hMoveString);
         vMove = Input.GetAxisRaw(vMoveString);
 
-        if(!isDodge && !isJumping && Input.GetButtonDown(jumpString))
+        if(!IsDodge && !IsJumping && Input.GetButtonDown(jumpString))
             Jump();
 
-        if (!isDodge && !isJumping && Input.GetButtonDown(dodgeString) && moveDirection != Vector3.zero)
+        if (!IsDodge && !IsJumping && Input.GetButtonDown(dodgeString) && moveDirection != Vector3.zero)
             StartCoroutine(Dodge());
     }
 
     void FixedUpdate()
     {
-        if (!isJumping && !isDodge)
+        if (!IsJumping && !IsDodge)
             moveDirection = new Vector3(-hMove, 0, -vMove);
+
+        if (playerAttack.IsAttack)
+            moveDirection = Vector3.zero;
 
         if (moveDirection != Vector3.zero)
         {
@@ -79,7 +92,7 @@ public class PlayerMove : MonoBehaviour
     {
         if(collision.transform.CompareTag(groundTagString))
         {
-            isJumping = false;
+            IsJumping = false;
 
             animator.SetBool(hashJump, false);
         }
@@ -87,7 +100,7 @@ public class PlayerMove : MonoBehaviour
 
     void Jump()
     {
-        isJumping = true;
+        IsJumping = true;
 
         rigidbody.AddForce(transform.up * jumpPower, ForceMode.Impulse);
 
@@ -96,14 +109,19 @@ public class PlayerMove : MonoBehaviour
 
     IEnumerator Dodge()
     {
-        isDodge = true;
+        IsDodge = true;
         speed = originalSpeed * 1.7f;
         animator.SetBool(hashDodge, true);
 
         yield return new WaitForSeconds(0.75f);
 
-        isDodge = false;
+        IsDodge = false;
         speed = originalSpeed;
         animator.SetBool(hashDodge, false);
+    }
+
+    public Vector3 GetPlayerMoveDirection()
+    {
+        return transform.forward;
     }
 }
