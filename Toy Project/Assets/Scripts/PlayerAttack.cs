@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class PlayerAttack : MonoBehaviour
 {
@@ -32,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
     {
         get; 
         private set;
-    } = false;
+    }
 
     void Awake()
     {

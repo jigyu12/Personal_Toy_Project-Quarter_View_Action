@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-    private Rigidbody rigidbody;
+    private new Rigidbody rigidbody;
 
     private Animator animator;
 
@@ -17,7 +17,7 @@ public class PlayerMove : MonoBehaviour
 
     private float hMove;
     private float vMove;
-    private float originalSpeed = 20f;
+    private readonly float originalSpeed = 20f;
     private float speed;
     private float jumpPower;
 
@@ -31,11 +31,11 @@ public class PlayerMove : MonoBehaviour
         get; private set;
     }
 
-    private string hMoveString = "Horizontal";
-    private string vMoveString = "Vertical";
-    private string jumpString = "Jump";
-    private string dodgeString = "Fire3";
-    private string groundTagString = "Ground";
+    private readonly string hMoveString = "Horizontal";
+    private readonly string vMoveString = "Vertical";
+    private readonly string jumpString = "Jump";
+    private readonly string dodgeString = "Fire3";
+    private readonly string groundTagString = "Ground";
 
     void Awake()
     {
@@ -47,7 +47,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         speed = originalSpeed;
-        jumpPower = 8f;
+        jumpPower = 450f;
 
         IsJumping = false;
         IsDodge = false;
@@ -78,10 +78,9 @@ public class PlayerMove : MonoBehaviour
             Quaternion moveRotation = Quaternion.LookRotation(moveDirection);
             rigidbody.MoveRotation(moveRotation);
 
-            RaycastHit hit;
-            if (!Physics.Raycast(transform.position, moveDirection, out hit, 3.5f))
+            if (!Physics.Raycast(transform.position, moveDirection, out _, 2.5f))
             {
-                rigidbody.MovePosition(transform.position + moveDirection.normalized * speed * Time.deltaTime);
+                rigidbody.MovePosition(transform.position + moveDirection.normalized * (speed * Time.deltaTime));
             }
         }
 

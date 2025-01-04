@@ -1,7 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class Bullet : MonoBehaviour
 {
@@ -30,7 +28,7 @@ public class Bullet : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.MovePosition(transform.position + dir.normalized * bulletSpeed * Time.deltaTime);
+        rb.MovePosition(transform.position + dir.normalized * (bulletSpeed * Time.deltaTime));
     }
 
     public IEnumerator Fire()
