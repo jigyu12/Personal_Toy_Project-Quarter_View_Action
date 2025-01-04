@@ -25,6 +25,8 @@ public class PlayerAttack : MonoBehaviour
     private GameObject rangeWeapon;
 
     public Bullet playerBullet;
+    
+    private PlayerStatus playerStatus;
 
     public bool IsAttack
     {
@@ -36,6 +38,7 @@ public class PlayerAttack : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
         playerMove = GetComponent<PlayerMove>();
+        playerStatus = GetComponent<PlayerStatus>();
     }
 
     void Start()
@@ -50,6 +53,9 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
+        if (playerStatus.IsDead)
+            return;
+        
         SwitchWeapon();
 
         if (!IsAttack && Input.GetMouseButton((int)MouseButton.Left) && !playerMove.IsDodge && !playerMove.IsJumping)

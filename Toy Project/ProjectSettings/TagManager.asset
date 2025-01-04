@@ -9,14 +9,19 @@ TagManager:
   - RangeWeapon
   - PlayerBullet
   - FirePos
+  - Weapon
+  - MonsterFirePos
+  - MeleeMonster
+  - RangeMonster
+  - MonsterMissile
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Missile
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

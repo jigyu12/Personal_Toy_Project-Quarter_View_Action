@@ -36,12 +36,15 @@ public class PlayerMove : MonoBehaviour
     private readonly string jumpString = "Jump";
     private readonly string dodgeString = "Fire3";
     private readonly string groundTagString = "Ground";
+    
+    private PlayerStatus playerStatus;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         animator = GetComponentInChildren<Animator>();
         playerAttack = GetComponent<PlayerAttack>();
+        playerStatus = GetComponent<PlayerStatus>();
     }
 
     void Start()
@@ -55,18 +58,24 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (playerStatus.IsDead)
+            return;
+        
         hMove = Input.GetAxisRaw(hMoveString);
         vMove = Input.GetAxisRaw(vMoveString);
 
-        if(!IsDodge && !IsJumping && Input.GetButtonDown(jumpString))
+        if(!IsDodge && !IsJumping && Input.GetButtonDown(jumpString) && !playerAttack.IsAttack)
             Jump();
 
-        if (!IsDodge && !IsJumping && Input.GetButtonDown(dodgeString) && moveDirection != Vector3.zero)
+        if (!IsDodge && !IsJumping && Input.GetButtonDown(dodgeString) && moveDirection != Vector3.zero&& !playerAttack.IsAttack)
             StartCoroutine(Dodge());
     }
 
     void FixedUpdate()
     {
+        if (playerStatus.IsDead)
+            return;
+        
         if (!IsJumping && !IsDodge)
             moveDirection = new Vector3(-hMove, 0, -vMove);
 
@@ -78,7 +87,7 @@ public class PlayerMove : MonoBehaviour
             Quaternion moveRotation = Quaternion.LookRotation(moveDirection);
             rigidbody.MoveRotation(moveRotation);
 
-            if (!Physics.Raycast(transform.position, moveDirection, out _, 2.5f))
+            if (!Physics.Raycast(transform.position, moveDirection, out _, 4f))
             {
                 rigidbody.MovePosition(transform.position + moveDirection.normalized * (speed * Time.deltaTime));
             }

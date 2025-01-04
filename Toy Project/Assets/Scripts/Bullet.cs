@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ public class Bullet : MonoBehaviour
     private Quaternion moveRotation;
 
     private GameObject firePos;
+    
+    private bool isDead;
 
     void Awake()
     {
@@ -23,7 +26,7 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        bulletSpeed = 20f;
+        bulletSpeed = 40f;
     }
 
     void FixedUpdate()
@@ -39,7 +42,19 @@ public class Bullet : MonoBehaviour
         transform.position = firePos.transform.position;
 
         yield return new WaitForSeconds(3f);
+        
+        if(!isDead)
+            Destroy(gameObject);
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag("MeleeMonster"))
+            other.GetComponent<MeleeMonster>().Damaged(2);
+        else if (other.transform.CompareTag("RangeMonster"))
+            other.GetComponent<RangeMonster>().Damaged(2);
+
+        isDead = true;
         Destroy(gameObject);
     }
 }
