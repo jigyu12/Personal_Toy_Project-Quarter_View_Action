@@ -3,15 +3,26 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - MeleeWeapon
+  - RangeWeapon
+  - PlayerBullet
+  - FirePos
+  - Weapon
+  - MonsterFirePos
+  - MeleeMonster
+  - RangeMonster
+  - MonsterMissile
+  - SceneManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Missile
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 
