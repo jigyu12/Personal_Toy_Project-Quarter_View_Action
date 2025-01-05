@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,6 +13,8 @@ public class MeleeMonster : MonoBehaviour
     bool isTargetFind;
     
     private int hp = 7;
+    
+    public GameManager gm;
 
     public bool IsDead
     {
@@ -70,6 +72,7 @@ public class MeleeMonster : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         
+        gm.SubMonsterCount();
         Destroy(gameObject);
     }
     

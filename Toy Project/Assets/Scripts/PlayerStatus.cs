@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class PlayerStatus : MonoBehaviour
 {
-    private int hp = 5;
+    private int hp;
 
     private bool isDamaged;
     
     private Animator animator;
     private readonly int hashDead = Animator.StringToHash("IsDead");
+
+    public Transform hpUI;
+    
+    public GameManager gameManager;
 
     public bool IsDead
     {
@@ -18,6 +22,10 @@ public class PlayerStatus : MonoBehaviour
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
+        
+        hp = 5;
+        
+        IsDead = false;
     }
     
     void OnCollisionStay(Collision collision)
@@ -29,6 +37,7 @@ public class PlayerStatus : MonoBehaviour
             collision.transform.CompareTag("MonsterMissile"))
         {
             hp -= 1;
+            hpUI.GetComponent<HpUI>().ChangeHp(hp);
             
             Debug.Log(hp);
 
@@ -37,6 +46,8 @@ public class PlayerStatus : MonoBehaviour
                 animator.SetTrigger(hashDead);
                 
                 IsDead = true;
+                
+                gameManager.PlayerDead();
             }
 
             StartCoroutine(Damaged());
@@ -49,6 +60,7 @@ public class PlayerStatus : MonoBehaviour
             return;
         
         hp -= 1;
+        hpUI.GetComponent<HpUI>().ChangeHp(hp);
             
         Debug.Log(hp);
         
@@ -57,6 +69,8 @@ public class PlayerStatus : MonoBehaviour
             animator.SetTrigger(hashDead);
                 
             IsDead = true;
+            
+            gameManager.PlayerDead();
         }
 
         StartCoroutine(Damaged());

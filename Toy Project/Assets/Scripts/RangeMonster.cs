@@ -16,6 +16,8 @@ public class RangeMonster : MonoBehaviour
 
     private int hp = 5;
     
+    public GameManager gm;
+    
     public bool IsDead
     {
         get;
@@ -100,6 +102,7 @@ public class RangeMonster : MonoBehaviour
         
         yield return new WaitForSeconds(1f);
         
+        gm.SubMonsterCount();
         Destroy(gameObject);
     }
 
